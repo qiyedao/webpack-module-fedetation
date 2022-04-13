@@ -7,7 +7,7 @@ import { HashRouter } from 'react-router-dom';
 import { renderToString } from 'react-dom/server';
 import App from '../src/App';
 const app = express();
-
+console.log('path.resolve', path.resolve('dist/index.html'));
 app.get('/*', (req, res) => {
     const renderedString = renderToString(
         // <HashRouter>
@@ -15,7 +15,7 @@ app.get('/*', (req, res) => {
         // </HashRouter>
     );
 
-    fs.readFile(path.resolve('dist/index.html'), 'utf8', (error, data) => {
+    fs.readFile(path.resolve('server/build/index.html'), 'utf8', (error, data) => {
         if (error) {
             res.send(`<p>Server Error</p>`);
             return false;
