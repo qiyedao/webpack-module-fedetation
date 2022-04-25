@@ -2,6 +2,23 @@ import React, { Suspense } from 'react';
 const RemoteApp = React.lazy(() => import('app2/App'));
 import Button from 'app2/Button';
 import Recorder from './Recorder';
+const withForm = config => WrappedComponent =>
+    class Demo extends React.Component {
+        render() {
+            return <WrappedComponent />;
+        }
+    };
+
+const create = params => {
+    return WrappedComponent => {
+        return class Demo extends React.Component {
+            render() {
+                return <WrappedComponent />;
+            }
+        };
+    };
+};
+
 const App = () => {
     return (
         <div>
