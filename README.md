@@ -2,6 +2,14 @@
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/github-twmku5)
 
+# windows 管理端口
+
+```js
+netstat -ano | findstr 端口号
+tasklist | findstr 进程号
+taskkill -PID 进程号 -F
+```
+
 # 启动项目
 
 ```js
