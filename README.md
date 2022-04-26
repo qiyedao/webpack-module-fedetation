@@ -28,8 +28,11 @@ yarn build
 # 项目部署
 
 ```js
+
+
 docker build -t 镜像名  Dockerfile目录
 
 docker run -p 8520:80 -d --name 容器名 镜像名
 
+docker exec -it 容器名 /bin/bash
 ```
