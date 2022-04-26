@@ -1,26 +1,30 @@
-function HZRecorder(stream, config) {
+window.URL = window.URL || window.webkitURL;
+navigator.getUserMedia =
+    navigator.getUserMedia ||
+    navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia ||
+    navigator.msGetUserMedia;
+
+var HZRecorder = function (stream, config) {
     config = config || {};
     config.sampleBits = config.sampleBits || 16; //采样数位 8, 16
-    config.sampleRate = config.sampleRate || 16000; //采样率16khz
-
+    config.sampleRate = config.sampleRate || 16000; // 采样率(1/6 44100)
     var context = new (window.webkitAudioContext || window.AudioContext)();
     var audioInput = context.createMediaStreamSource(stream);
     var createScript = context.createScriptProcessor || context.createJavaScriptNode;
     var recorder = createScript.apply(context, [4096, 1, 1]);
-
     var audioData = {
-        size: 0, //录音文件长度
-        buffer: [], //录音缓存
-        inputSampleRate: context.sampleRate, //输入采样率
-        inputSampleBits: 16, //输入采样数位 8, 16
-        outputSampleRate: config.sampleRate, //输出采样率
-        oututSampleBits: config.sampleBits, //输出采样数位 8, 16
+        size: 0, // 录音文件长度
+        buffer: [], // 录音缓存
+        inputSampleRate: context.sampleRate, // 输入采样率
+        inputSampleBits: 16, // 输入采样数位
+        outputSampleRate: config.sampleRate, // 输出采样率
+        oututSampleBits: config.sampleBits, // 输出采样数位
         input: function (data) {
             this.buffer.push(new Float32Array(data));
             this.size += data.length;
         },
         compress: function () {
-            //合并压缩
             //合并
             var data = new Float32Array(this.size);
             var offset = 0;
@@ -49,7 +53,7 @@ function HZRecorder(stream, config) {
             var buffer = new ArrayBuffer(44 + dataLength);
             var data = new DataView(buffer);
 
-            var channelCount = 1; //单声道
+            var channelCount = 1; // 单声道
             var offset = 0;
 
             var writeString = function (str) {
@@ -115,43 +119,117 @@ function HZRecorder(stream, config) {
             return new Blob([data], { type: 'audio/wav' });
         },
     };
-    //开始录音
+
+    // 开始录音
     this.start = function () {
         audioInput.connect(recorder);
         recorder.connect(context.destination);
     };
 
-    //停止
+    // 暂停
     this.stop = function () {
         recorder.disconnect();
     };
 
-    //获取音频文件
+    // 获取音频文件
     this.getBlob = function () {
         this.stop();
-        console.log(audioData.encodeWAV());
         return audioData.encodeWAV();
     };
 
-    //回放
+    // 播放
     this.play = function (audio) {
-        var blob = this.getBlob();
-        // saveAs(blob, "F:/3.wav");
         audio.src = window.URL.createObjectURL(this.getBlob());
     };
 
-    //上传
-    this.upload = function () {
-        return this.getBlob();
+    // 上传
+    this.upload = function (url, callback) {
+        var fd = new FormData();
+        fd.append('audioData', this.getBlob());
+        var xhr = new XMLHttpRequest();
+        if (callback) {
+            xhr.upload.addEventListener(
+                'progress',
+                function (e) {
+                    callback('uploading', e);
+                },
+                false
+            );
+            xhr.addEventListener(
+                'load',
+                function (e) {
+                    callback('ok', e);
+                },
+                false
+            );
+            xhr.addEventListener(
+                'error',
+                function (e) {
+                    callback('error', e);
+                },
+                false
+            );
+            xhr.addEventListener(
+                'abort',
+                function (e) {
+                    callback('cancel', e);
+                },
+                false
+            );
+        }
+        xhr.open('POST', url);
+        xhr.send(fd);
     };
 
-    //音频采集
+    // 音频采集
     recorder.onaudioprocess = function (e) {
         audioData.input(e.inputBuffer.getChannelData(0));
-        //record(e.inputBuffer.getChannelData(0));
     };
-
-    return this;
-}
-
-export { HZRecorder };
+};
+// 抛出异常
+HZRecorder.throwError = function (message) {
+    alert(message);
+    throw new (function () {
+        this.toString = function () {
+            return message;
+        };
+    })();
+};
+// 是否支持录音
+HZRecorder.canRecording = navigator.getUserMedia != null;
+// 获取录音机
+HZRecorder.get = function (callback, config) {
+    if (callback) {
+        if (navigator.getUserMedia) {
+            navigator.getUserMedia(
+                { audio: true }, // 启用音频
+                function (stream) {
+                    var rec = new HZRecorder(stream, config);
+                    callback(rec);
+                },
+                function (error) {
+                    switch (error.code || error.name) {
+                        case 'PERMISSION_DENIED':
+                        case 'PermissionDeniedError':
+                            console.log('用户拒绝提供信息。');
+                            break;
+                        case 'NOT_SUPPORTED_ERROR':
+                        case 'NotSupportedError':
+                            console.log('浏览器不支持硬件设备。');
+                            break;
+                        case 'MANDATORY_UNSATISFIED_ERROR':
+                        case 'MandatoryUnsatisfiedError':
+                            console.log('无法发现指定的硬件设备。');
+                            break;
+                        default:
+                            console.log('无法打开麦克风。异常信息:' + (error.code || error.name));
+                            break;
+                    }
+                }
+            );
+        } else {
+            console.log('当前浏览器不支持录音功能。');
+            return;
+        }
+    }
+};

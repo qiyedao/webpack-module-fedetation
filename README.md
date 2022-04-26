@@ -35,4 +35,14 @@ docker build -t 镜像名  Dockerfile目录
 docker run -p 8520:80 -d --name 容器名 镜像名
 
 docker exec -it 容器名 /bin/bash
+
+
+docker export 镜像id > name.tar
+docker import - 镜像名 < name.tar
+
+docker save -o images.tar 镜像名1 镜像名2
+docker load < images.tar
+
+docker inspect 镜像名
+docker tag 镜像名 标签
 ```
