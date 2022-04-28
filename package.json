@@ -10,8 +10,8 @@
   "scripts": {
     "start": "lerna run --parallel start",
     "build": "lerna run build",
-    "build:server":"lerna run build:server",
-    "server":"lerna run server"
+    "build:server": "lerna run build:server",
+    "server": "lerna run server"
   },
   "devDependencies": {
     "lerna": "^4.0.0"

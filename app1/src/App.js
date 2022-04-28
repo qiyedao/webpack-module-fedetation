@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
 const RemoteApp = React.lazy(() => import('app2/App'));
 import Button from 'app2/Button';
-import Recorder from './Recorder';
 const withForm = config => WrappedComponent =>
     class Demo extends React.Component {
         render() {

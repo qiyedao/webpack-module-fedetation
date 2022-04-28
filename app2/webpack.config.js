@@ -12,6 +12,19 @@ module.exports = {
     output: {
         publicPath: 'auto',
     },
+    // resolve: {
+    //     fallback: {
+    //         zlib: require.resolve('browserify-zlib'),
+    //         url: require.resolve('url'),
+    //         buffer: require.resolve('buffer/'),
+    //         util: require.resolve('util/'),
+    //         crypto: require.resolve('crypto-browserify/'),
+    //         http: require.resolve('stream-http'),
+    //         https: require.resolve('https-browserify'),
+    //         stream: require.resolve('stream-browserify'),
+    //     },
+    // },
+
     module: {
         rules: [
             {

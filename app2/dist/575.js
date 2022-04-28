@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkapp2=self.webpackChunkapp2||[]).push([[575],{575:(e,n,t)=>{t.r(n);var l=t(471),r=t.n(l),a=t(711);const p=()=>r().createElement("div",{style:{margin:"10px",padding:"10px",textAlign:"center",backgroundColor:"cyan"}},r().createElement("h1",null,"App 2"));t.n(a)().render(r().createElement(p,null),document.getElementById("root"))}}]);
