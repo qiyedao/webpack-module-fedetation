@@ -3843,6 +3843,13 @@ kind-of@^6.0.2, kind-of@^6.0.3:
   resolved "https://registry.npmmirror.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
+lamejstmp@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/lamejstmp/-/lamejstmp-1.0.1.tgz#d304b74837371efe3c4812927ce429b131b82873"
+  integrity sha512-eEENqMTpiDNTaeOWWbv58KVT4uh9tP7XqpG+aODm9U2eRHwH8Hsx3OnNKxd3noVN6cHmQomv5HQ9N7tzTSVxNQ==
+  dependencies:
+    use-strict "1.0.1"
+
 lerna@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmmirror.com/lerna/-/lerna-4.0.0.tgz#b139d685d50ea0ca1be87713a7c2f44a5b678e9e"
@@ -6150,6 +6157,11 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+use-strict@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/use-strict/-/use-strict-1.0.1.tgz#0bb80d94f49a4a05192b84a8c7d34e95f1a7e3a0"
+  integrity sha1-C7gNlPSaSgUZK4Sox9NOlfGn46A=
+
 util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.npmmirror.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
@@ -6563,3 +6575,20 @@ yargs@^16.2.0:
     string-width "^4.2.0"
     y18n "^5.0.5"
     yargs-parser "^20.2.2"
+
+yiyi-audio-recorder@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/yiyi-audio-recorder/-/yiyi-audio-recorder-1.0.3.tgz#02d267f93199b41327a9383cef6752cde287b679"
+  integrity sha512-mCZXW+vHjkN/aXjN78ffdHjd6T2+Teni5LFtmIhA4ftf6zsYpdug2StyRX3z5ZxrgaCvgH/6NhdnC0tbkNyV5w==
+  dependencies:
+    lamejstmp "^1.0.1"
+
+yiyi-websocket@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/yiyi-websocket/-/yiyi-websocket-1.0.1.tgz#560bc67053aaa55984119302a30c79b4cf3b1e43"
+  integrity sha512-Px5RxfaJljUfe8TTpjIlM1a3iRJN9hpeSo1khi8F5i2izSd9IuR0qYzOmqSb8o54qJijUQ5M1vJmrIqUdXLpbw==
+
+yiyi-websocket@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/yiyi-websocket/-/yiyi-websocket-1.0.0.tgz#91be3033026f77ddbf737dd4705a9b3afe39b27c"
+  integrity sha512-pkk7JDV7XOGvjV2eFaeVZBexm3YLuLymiXNLdHcshyzTfjCxZ7TOnZpN7bEvuGMfA3IW6svgXwk/CllYdiwBww==

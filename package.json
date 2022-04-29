@@ -15,5 +15,9 @@
   },
   "devDependencies": {
     "lerna": "^4.0.0"
+  },
+  "dependencies": {
+    "yiyi-audio-recorder": "1.0.3",
+    "yiyi-websocket": "1.0.1"
   }
 }
