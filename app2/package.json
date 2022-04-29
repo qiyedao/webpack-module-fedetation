@@ -12,16 +12,16 @@
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router-dom":"^6.3.0",
-    "react-router":"^6.3.0",
-    "yiyi-websocket":"^1.0.0"
-    
+    "react-router-dom": "^6.3.0",
+    "react-router": "^6.3.0",
+    "yiyi-audio-recorder": "1.0.4",
+    "yiyi-websocket": "1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/preset-react": "^7.13.13",
     "babel-loader": "^8.2.2",
-    "cross-env":"^7.0.3",
+    "cross-env": "^7.0.3",
     "html-webpack-plugin": "^5.3.1",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.2",

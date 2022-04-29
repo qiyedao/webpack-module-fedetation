@@ -6576,19 +6576,14 @@ yargs@^16.2.0:
     y18n "^5.0.5"
     yargs-parser "^20.2.2"
 
-yiyi-audio-recorder@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/yiyi-audio-recorder/-/yiyi-audio-recorder-1.0.3.tgz#02d267f93199b41327a9383cef6752cde287b679"
-  integrity sha512-mCZXW+vHjkN/aXjN78ffdHjd6T2+Teni5LFtmIhA4ftf6zsYpdug2StyRX3z5ZxrgaCvgH/6NhdnC0tbkNyV5w==
+yiyi-audio-recorder@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/yiyi-audio-recorder/-/yiyi-audio-recorder-1.0.4.tgz#0ce0284d7fb15f8c7e7fa14c3e56ed4a6793be39"
+  integrity sha512-imQEHNYvytlLgOpt4kosZF8QUH5XbQD6CCIw7iTJPkgQsWZH7DbSAZC5+tFFVMaNY+B+2IOMER9+/kkij8LEUg==
   dependencies:
     lamejstmp "^1.0.1"
 
-yiyi-websocket@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/yiyi-websocket/-/yiyi-websocket-1.0.1.tgz#560bc67053aaa55984119302a30c79b4cf3b1e43"
-  integrity sha512-Px5RxfaJljUfe8TTpjIlM1a3iRJN9hpeSo1khi8F5i2izSd9IuR0qYzOmqSb8o54qJijUQ5M1vJmrIqUdXLpbw==
-
-yiyi-websocket@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/yiyi-websocket/-/yiyi-websocket-1.0.0.tgz#91be3033026f77ddbf737dd4705a9b3afe39b27c"
-  integrity sha512-pkk7JDV7XOGvjV2eFaeVZBexm3YLuLymiXNLdHcshyzTfjCxZ7TOnZpN7bEvuGMfA3IW6svgXwk/CllYdiwBww==
+yiyi-websocket@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/yiyi-websocket/-/yiyi-websocket-1.0.2.tgz#f61b915db0669457ced14c12ac34f867fd6ff765"
+  integrity sha512-i5xsHnZflGUFCcJH81xbwY/z34c7c8fUnRe82dJ0tb1rDP6USuKMG90Qt17DfTNCqkGeqMFtO1VxGl0VMf92NQ==

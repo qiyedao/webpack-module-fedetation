@@ -54,12 +54,12 @@ const App = () => {
 
     const getMP3Blob = () => {
         const blob = recorder.getMP3Blob();
-        const file = new File(blob, '录音', { type: blob.type });
+        const file = new File([blob], '录音', { type: blob.type });
         console.log('blob', blob, 'file', file);
     };
     const downloadMp3 = () => {
         console.log('recorder', recorder);
-        recorder.downloadMP3();
+        recorder.downloadMP3('录音');
     };
     return (
         <div
