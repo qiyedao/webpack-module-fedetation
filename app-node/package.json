@@ -1,0 +1,21 @@
+{
+  "name": "fcp",
+  "version": "1.0.0",
+  "description": "node",
+  "bin": "./index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "yiyi",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "commander": "^9.2.0",
+    "fs-extra": "^10.1.0",
+    "inquirer": "^8.2.4",
+    "yargs": "^17.4.1"
+  }
+}
