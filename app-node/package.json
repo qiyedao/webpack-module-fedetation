@@ -1,6 +1,6 @@
 {
   "name": "freecp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "node",
   "bin": "./dist/index.js",
   "scripts": {
