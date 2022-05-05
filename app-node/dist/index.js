@@ -8,7 +8,7 @@ var require_package = __commonJS({
   "package.json"(exports, module2) {
     module2.exports = {
       name: "freecp",
-      version: "1.0.0",
+      version: "1.0.2",
       description: "node",
       bin: "./dist/index.js",
       scripts: {
@@ -16,7 +16,8 @@ var require_package = __commonJS({
         test: 'echo "Error: no test specified" && exit 1'
       },
       files: [
-        "index.js"
+        "index.js",
+        "dist"
       ],
       keywords: [
         "node"
