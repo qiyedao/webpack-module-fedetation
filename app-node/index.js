@@ -26,8 +26,6 @@ function checkFile(origin, dest) {
     origin = path.isAbsolute(origin) ? origin : path.join(cwd, origin);
     dest = path.isAbsolute(dest) ? dest : path.join(cwd, dest);
     const fileInfo = fs.statSync(origin);
-    console.log(origin, 'origin', dest, 'dest');
-
     if (!fs.existsSync(origin)) {
         console.error('原路径不存在');
     } else {
