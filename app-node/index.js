@@ -3,6 +3,7 @@ const { Command } = require('commander');
 const fs = require('fs-extra');
 const pkg = require('./package.json');
 const path = require('path');
+const inquirer = require('inquirer');
 let name;
 function init() {
     const program = new Command();
@@ -16,32 +17,61 @@ function init() {
         .option('-r, --rename <new name>', 'rename files')
 
         .action((origin, dest, options) => {
-            console.log('origin', path.isAbsolute(origin), 'dest', dest, '======');
-            const cwd = process.cwd();
-            console.log('path.join(cwd, origin)', path.join(cwd, origin));
-            origin = path.isAbsolute(origin) ? origin : path.join(cwd, origin);
-            dest = path.isAbsolute(dest) ? dest : path.join(cwd, dest);
-            console.log('origin', origin, 'dest', dest, 'options', options, __dirname);
-            return;
-            if (!fs.existsSync(origin)) {
-                console.log('原路径不存在');
-            } else {
-                if (!fs.existsSync(dest)) {
-                    fs.mkdirpSync(dest);
-                    fs.copyFileSync(origin, dest, function (err) {
-                        console.log('err', err);
-                        if (err) return console.error(err);
-                        console.log('success!');
-                    });
-                } else {
-                    fs.copyFileSync(origin, dest, function (err) {
-                        console.log('err', err);
-                        if (err) return console.error(err);
-                        console.log('success!');
-                    });
-                }
-            }
+            checkFile(origin, dest);
         });
     program.parse();
+}
+function checkFile(origin, dest) {
+    const cwd = process.cwd();
+    origin = path.isAbsolute(origin) ? origin : path.join(cwd, origin);
+    dest = path.isAbsolute(dest) ? dest : path.join(cwd, dest);
+    const fileInfo = fs.statSync(origin);
+    console.log(origin, 'origin', dest, 'dest');
+
+    if (!fs.existsSync(origin)) {
+        console.error('原路径不存在');
+    } else {
+        if (!fs.existsSync(dest)) {
+            fs.mkdirpSync(dest);
+            if (fileInfo.isFile()) {
+                cpFile(origin, path.resolve(dest, path.basename(origin)));
+            } else {
+                cpDirFile(origin, dest);
+            }
+        } else {
+            if (fileInfo.isFile()) {
+                cpFile(origin, path.resolve(dest, path.basename(origin)));
+            } else {
+                cpDirFile(origin, dest);
+            }
+        }
+    }
+}
+
+function cpFile(origin, dest) {
+    fs.copyFileSync(origin, dest);
+}
+function cpDirFile(url, dest) {
+    const currentFiles = fs.readdirSync(url);
+    if (currentFiles.length == 0) {
+        // console.error('目录下没有文件', url);
+    } else {
+        // console.error('目录下有文件', url);
+    }
+    currentFiles.forEach(item => {
+        let fileUrl = path.resolve(url, item);
+        let info = fs.statSync(fileUrl);
+        if (info.isFile()) {
+            let destPath = path.resolve(dest, item);
+
+            if (fs.existsSync(destPath)) {
+            } else {
+                fs.copyFileSync(fileUrl, path.resolve(dest, item));
+            }
+        }
+        if (info.isDirectory()) {
+            fs.copySync(fileUrl, path.resolve(dest, item));
+        }
+    });
 }
 init();
