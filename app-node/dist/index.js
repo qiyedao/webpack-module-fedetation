@@ -8,7 +8,7 @@ var require_package = __commonJS({
   "package.json"(exports, module2) {
     module2.exports = {
       name: "freecp",
-      version: "1.0.2",
+      version: "1.0.3",
       description: "node",
       bin: "./dist/index.js",
       scripts: {
